@@ -78,21 +78,39 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jk8-Wo-Upy">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="B4W-gr-ktu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Comment">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DMD-jp-D6D" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="0gA-RK-mp7"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="0t5-8q-PTh"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="2f8-VH-h1R"/>
-                            <constraint firstItem="DMD-jp-D6D" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="239" id="7k1-c9-4mm"/>
+                            <constraint firstItem="pYW-ac-OA9" firstAttribute="centerX" secondItem="Ccx-QP-uAt" secondAttribute="centerX" type="default" id="3jR-iA-QO0"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="8TC-ia-xyW"/>
+                            <constraint firstItem="Jk8-Wo-Upy" firstAttribute="baseline" secondItem="pYW-ac-OA9" secondAttribute="baseline" type="default" id="GUg-FY-SYL"/>
+                            <constraint firstItem="DMD-jp-D6D" firstAttribute="baseline" secondItem="pYW-ac-OA9" secondAttribute="baseline" type="default" id="KsC-ab-P7F"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="TQj-0U-6e3"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="U9D-et-SvO"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Xfz-jP-pi8"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="cGu-mz-yBI"/>
+                            <constraint firstAttribute="bottom" secondItem="Jk8-Wo-Upy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="gVT-ae-Hei"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="hMV-ew-fKb"/>
                             <constraint firstAttribute="bottom" secondItem="pYW-ac-OA9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="i25-pe-6xd"/>
-                            <constraint firstItem="pYW-ac-OA9" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="361" id="zIk-oO-pwm"/>
+                            <constraint firstItem="pYW-ac-OA9" firstAttribute="leading" secondItem="DMD-jp-D6D" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="jSz-w4-pDW"/>
+                            <constraint firstItem="Jk8-Wo-Upy" firstAttribute="leading" secondItem="pYW-ac-OA9" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="lU5-RJ-oLf"/>
+                            <constraint firstItem="Jk8-Wo-Upy" firstAttribute="baseline" secondItem="DMD-jp-D6D" secondAttribute="baseline" type="default" id="opk-7I-hJf"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -133,9 +151,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -66,14 +66,40 @@
                                     <action selector="goToCurrentClicked:" destination="2" eventType="touchUpInside" id="q6C-MG-zto"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32b-7e-RBm">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="save">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gro-Ru-ehy">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="comment">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="OXf-tS-IP9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="84r-lb-aFb"/>
-                            <constraint firstItem="OXf-tS-IP9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="138" id="8dg-Mo-H55"/>
+                            <constraint firstAttribute="bottom" secondItem="gro-Ru-ehy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="99x-Kl-xXe"/>
+                            <constraint firstItem="gro-Ru-ehy" firstAttribute="leading" secondItem="OXf-tS-IP9" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9j7-FL-Yfb"/>
+                            <constraint firstItem="gro-Ru-ehy" firstAttribute="baseline" secondItem="32b-7e-RBm" secondAttribute="baseline" type="default" id="BBQ-MG-D3m"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="Dc5-Mc-5Ar"/>
+                            <constraint firstItem="gro-Ru-ehy" firstAttribute="baseline" secondItem="OXf-tS-IP9" secondAttribute="baseline" type="default" id="NQW-4p-Uzd"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="SIo-li-Q90"/>
+                            <constraint firstAttribute="bottom" secondItem="32b-7e-RBm" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="UAH-Fu-2n6"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="hUK-Kb-G4X"/>
+                            <constraint firstItem="OXf-tS-IP9" firstAttribute="leading" secondItem="32b-7e-RBm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="k4I-3M-pgd"/>
+                            <constraint firstItem="OXf-tS-IP9" firstAttribute="centerX" secondItem="ka7-pp-ljb" secondAttribute="centerX" type="default" id="kac-EE-Q2H"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="zEU-Tl-3C2"/>
                         </constraints>
                     </view>
