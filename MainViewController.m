@@ -20,7 +20,6 @@
     NSMutableArray* _slidesArray;
     NSString* _lastImageUrlString;
     NSInteger _firstSlideId;
-    NSInteger _lastSlideId;
 }
 
 @end
@@ -57,31 +56,42 @@
                               error:&error];
         
         NSString* imageUrlString = [json objectForKey:@"url"];
-        NSString* slideId = [json objectForKey:@"currentSlide"];
+        NSString* slideIdString = [json objectForKey:@"currentSlide"];
+        NSInteger slideId = [slideIdString intValue];
         if ([_slidesArray count] == 0)
         {
-            _firstSlideId = [slideId intValue];
+            _firstSlideId = slideId;
         }
-        if ([imageUrlString compare:_lastImageUrlString] == NSOrderedSame) {
-            NSLog(@"image didnt change");
-            
+        
+        slideId = slideId - _firstSlideId;
+        
+        if (slideId < [_slidesArray count]) {
+            //got back to existing slide
+            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:slideId inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         }else{
-            _lastImageUrlString = imageUrlString;
-            UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlString]]];
-            
-            Boolean sameImage = YES;
-            //if ([_slidesArray count] > 0) {
-            //    sameImage = [self Compare:img secondImage:_slidesArray[0]];
-            //}
-            
-            if (sameImage) {
-                [_slidesArray addObject:img];
-                [_collectionView reloadData];
-                [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_slidesArray.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-                NSLog(@"image changed");
+            //got a new slide
+           
+            if ([imageUrlString compare:_lastImageUrlString] == NSOrderedSame) {
+                NSLog(@"image didnt change");
+                
+            }else{
+                _lastImageUrlString = imageUrlString;
+                UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlString]]];
+                
+                Boolean sameImage = YES;
+                //if ([_slidesArray count] > 0) {
+                //    sameImage = [self Compare:img secondImage:_slidesArray[0]];
+                //}
+                
+                if (sameImage) {
+                    [_slidesArray addObject:img];
+                    [_collectionView reloadData];
+                    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_slidesArray.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                    NSLog(@"image changed");
+                }
             }
-        }
 
+        }
     }else{
         NSLog(@"server not reached");
     }
