@@ -151,23 +151,42 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+//-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    
+//    CGFloat pageWidth = _collectionView.frame.size.width;
+//    NSInteger currentPage = _collectionView.contentOffset.x / pageWidth;
+//
+//    if (currentPage < _currentPresentorSlide) {
+//        [_goToCurrentButton setTitle:@"<" forState:UIControlStateNormal];
+//        [_goToCurrentButton setHidden:NO];
+//    }
+//    if (currentPage > _currentPresentorSlide) {
+//        [_goToCurrentButton setTitle:@">" forState:UIControlStateNormal];
+//        [_goToCurrentButton setHidden:NO];
+//    }
+//    
+//    if (currentPage == _currentPresentorSlide) {
+//        [_goToCurrentButton setHidden:YES];
+//    }
+//}
 
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(SlideCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = indexPath.row;
-    if (cell.slideId < _currentPresentorSlide) {
-        [_goToCurrentButton setTitle:@"<" forState:UIControlStateNormal];
-        [_goToCurrentButton setHidden:NO];
-    }
-    if (cell.slideId > _currentPresentorSlide) {
-        [_goToCurrentButton setTitle:@">" forState:UIControlStateNormal];
-        [_goToCurrentButton setHidden:NO];
-    }
-    
-    if (cell.slideId == _currentPresentorSlide) {
-        [_goToCurrentButton setHidden:YES];
-    }
-}
+//- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(SlideCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSInteger row = indexPath.row;
+//    if (cell.slideId < _currentPresentorSlide) {
+//        [_goToCurrentButton setTitle:@"<" forState:UIControlStateNormal];
+//        [_goToCurrentButton setHidden:NO];
+//    }
+//    if (cell.slideId > _currentPresentorSlide) {
+//        [_goToCurrentButton setTitle:@">" forState:UIControlStateNormal];
+//        [_goToCurrentButton setHidden:NO];
+//    }
+//    
+//    if (cell.slideId == _currentPresentorSlide) {
+//        [_goToCurrentButton setHidden:YES];
+//    }
+//}
 
 
 #pragma mark – UICollectionViewDelegateFlowLayout
