@@ -10,5 +10,5 @@
 
 @interface SlideCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *slideCellImageView;
-
+@property (assign, nonatomic) NSInteger slideId;
 @end

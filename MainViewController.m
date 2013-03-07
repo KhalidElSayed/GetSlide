@@ -11,7 +11,7 @@
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kServiceUrl [NSURL URLWithString:@"http://ec2-23-20-10-231.compute-1.amazonaws.com:8080/getslide/presentation/1/latest.htm"]
-#define kUpdateTimeIntervalInSeconds 1.0f 
+#define kUpdateTimeIntervalInSeconds 0.2f 
 
 #define kCellInset 20
 
@@ -21,6 +21,7 @@
     NSString* _lastImageUrlString;
     NSInteger _firstSlideId;
     NSInteger _currentSlide;
+    NSInteger _currentPresentorSlide;
 }
 
 @end
@@ -48,7 +49,7 @@
 }
 
 - (IBAction)goToCurrentClicked:(id)sender {
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentSlide inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentPresentorSlide inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -73,12 +74,16 @@
             slideId = 0;
         }
         
+        _currentPresentorSlide = slideId;
+        
         NSLog(@"id: %d", slideId);
         
-        if (slideId+1 < [_slidesArray count]) {
+        if (slideId+1 <= [_slidesArray count]) {
             //got back to existing slide
-            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:slideId inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-            _currentSlide = slideId;
+            if (_currentSlide != slideId) {
+                [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:slideId inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                _currentSlide = slideId;
+            }
         }else{
             //got a new slide
            
@@ -140,22 +145,26 @@
     
     [cell.slideCellImageView setImage:_slidesArray[indexPath.row]];
     
+    [cell setSlideId:indexPath.row];
+    
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(SlideCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < _currentSlide) {
+    NSInteger row = indexPath.row;
+    if (cell.slideId < _currentPresentorSlide) {
         [_goToCurrentButton setTitle:@"<" forState:UIControlStateNormal];
+        [_goToCurrentButton setHidden:NO];
     }
-    if (indexPath.row > _currentSlide) {
+    if (cell.slideId > _currentPresentorSlide) {
         [_goToCurrentButton setTitle:@">" forState:UIControlStateNormal];
+        [_goToCurrentButton setHidden:NO];
     }
     
-    [_goToCurrentButton setHidden:NO];
-    if (indexPath.row == _currentSlide) {
+    if (cell.slideId == _currentPresentorSlide) {
         [_goToCurrentButton setHidden:YES];
     }
 }
