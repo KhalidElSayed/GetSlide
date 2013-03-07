@@ -14,11 +14,13 @@
     
     IBOutlet UIActivityIndicatorView *_activityIndicator;
     IBOutlet UIButton *_goToCurrentButton;
+    IBOutlet UIImageView *doneImage;
 }
 
 - (void)fetchedData:(NSData *)responseData;
 - (void)fetchData;
 
 - (IBAction)goToCurrentClicked:(id)sender;
+- (IBAction)saveClicked:(id)sender;
 
 @end

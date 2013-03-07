@@ -50,6 +50,12 @@
                                     <outlet property="delegate" destination="2" id="tn7-xI-cvQ"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Done.png" translatesAutoresizingMaskIntoConstraints="NO" id="84g-m3-Ixc">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="IvE-6e-Zb1"/>
+                                    <constraint firstAttribute="height" constant="150" id="Qo1-HD-Gpz"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXf-tS-IP9">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="mpU-ap-coa"/>
@@ -92,20 +98,21 @@
                             <constraint firstAttribute="bottom" secondItem="OXf-tS-IP9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="84r-lb-aFb"/>
                             <constraint firstAttribute="bottom" secondItem="gro-Ru-ehy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="99x-Kl-xXe"/>
                             <constraint firstItem="gro-Ru-ehy" firstAttribute="leading" secondItem="OXf-tS-IP9" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9j7-FL-Yfb"/>
-                            <constraint firstItem="gro-Ru-ehy" firstAttribute="baseline" secondItem="32b-7e-RBm" secondAttribute="baseline" type="default" id="BBQ-MG-D3m"/>
-                            <constraint firstItem="ka7-pp-ljb" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="Dc5-Mc-5Ar"/>
-                            <constraint firstItem="gro-Ru-ehy" firstAttribute="baseline" secondItem="OXf-tS-IP9" secondAttribute="baseline" type="default" id="NQW-4p-Uzd"/>
+                            <constraint firstItem="ka7-pp-ljb" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="NOw-pk-6p8"/>
+                            <constraint firstItem="OXf-tS-IP9" firstAttribute="centerX" secondItem="ka7-pp-ljb" secondAttribute="centerX" type="default" id="O5X-lS-g3k"/>
+                            <constraint firstItem="ka7-pp-ljb" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="OlN-4z-3hl"/>
+                            <constraint firstItem="84g-m3-Ixc" firstAttribute="centerX" secondItem="OXf-tS-IP9" secondAttribute="centerX" type="default" id="PLD-Gu-58s"/>
+                            <constraint firstItem="84g-m3-Ixc" firstAttribute="centerY" secondItem="ka7-pp-ljb" secondAttribute="centerY" type="default" id="RzK-PF-vbm"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="SIo-li-Q90"/>
                             <constraint firstAttribute="bottom" secondItem="32b-7e-RBm" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="UAH-Fu-2n6"/>
-                            <constraint firstItem="ka7-pp-ljb" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="hUK-Kb-G4X"/>
                             <constraint firstItem="OXf-tS-IP9" firstAttribute="leading" secondItem="32b-7e-RBm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="k4I-3M-pgd"/>
-                            <constraint firstItem="OXf-tS-IP9" firstAttribute="centerX" secondItem="ka7-pp-ljb" secondAttribute="centerX" type="default" id="kac-EE-Q2H"/>
                             <constraint firstItem="ka7-pp-ljb" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="zEU-Tl-3C2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="_collectionView" destination="ka7-pp-ljb" id="WEh-DN-4PV"/>
                         <outlet property="_goToCurrentButton" destination="OXf-tS-IP9" id="HYW-cV-nhq"/>
+                        <outlet property="doneImage" destination="84g-m3-Ixc" id="MJe-MS-5CM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -113,14 +120,19 @@
             <point key="canvasLocation" x="-227" y="-19"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Done.png" width="800" height="800"/>
+    </resources>
     <classes>
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
                 <relationship kind="action" name="goToCurrentClicked:"/>
+                <relationship kind="action" name="saveClicked:"/>
                 <relationship kind="outlet" name="_activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="_collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="_goToCurrentButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="doneImage" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

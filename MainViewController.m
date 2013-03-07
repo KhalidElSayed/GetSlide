@@ -52,6 +52,17 @@
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentPresentorSlide inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
+- (IBAction)saveClicked:(id)sender {
+    [doneImage setHidden:NO];
+    doneImage.alpha = 1;
+    
+    [UIView animateWithDuration:1.0f delay:1.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        doneImage.alpha = 0;
+    } completion:nil];
+    
+    UIImageWriteToSavedPhotosAlbum(_slidesArray[_currentSlide], self, nil, nil);
+}
+
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
     

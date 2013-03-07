@@ -12,7 +12,6 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ccx-QP-uAt"/>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ME-yvN">
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lnk-Wc-YyM">
@@ -49,6 +48,13 @@
                                     <outlet property="delegate" destination="2" id="DCi-aP-jXH"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ccx-QP-uAt"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Done.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zug-bZ-89Q">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Wqk-tL-OEq"/>
+                                    <constraint firstAttribute="width" constant="300" id="zeZ-5I-pLd"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYW-ac-OA9">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="82" id="hGY-rW-j6p"/>
@@ -77,6 +83,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveClicked:" destination="2" eventType="touchUpInside" id="9SO-4f-jm6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jk8-Wo-Upy">
                                 <constraints>
@@ -96,21 +105,20 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DMD-jp-D6D" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="0gA-RK-mp7"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="0t5-8q-PTh"/>
-                            <constraint firstItem="Ccx-QP-uAt" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="2f8-VH-h1R"/>
-                            <constraint firstItem="pYW-ac-OA9" firstAttribute="centerX" secondItem="Ccx-QP-uAt" secondAttribute="centerX" type="default" id="3jR-iA-QO0"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="8TC-ia-xyW"/>
-                            <constraint firstItem="Jk8-Wo-Upy" firstAttribute="baseline" secondItem="pYW-ac-OA9" secondAttribute="baseline" type="default" id="GUg-FY-SYL"/>
-                            <constraint firstItem="DMD-jp-D6D" firstAttribute="baseline" secondItem="pYW-ac-OA9" secondAttribute="baseline" type="default" id="KsC-ab-P7F"/>
-                            <constraint firstItem="u4R-ME-yvN" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="TQj-0U-6e3"/>
                             <constraint firstItem="Ccx-QP-uAt" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="U9D-et-SvO"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerY" secondItem="u4R-ME-yvN" secondAttribute="centerY" type="default" id="UfQ-dD-AcP"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="WQR-kW-Axv"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerX" secondItem="pYW-ac-OA9" secondAttribute="centerX" type="default" id="WuQ-t4-JbL"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Xfz-jP-pi8"/>
                             <constraint firstItem="u4R-ME-yvN" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="cGu-mz-yBI"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerX" secondItem="u4R-ME-yvN" secondAttribute="centerX" type="default" id="cM7-Z0-b0L"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerX" secondItem="Ccx-QP-uAt" secondAttribute="centerX" type="default" id="e3w-gS-Hcv"/>
                             <constraint firstAttribute="bottom" secondItem="Jk8-Wo-Upy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="gVT-ae-Hei"/>
-                            <constraint firstItem="u4R-ME-yvN" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="hMV-ew-fKb"/>
                             <constraint firstAttribute="bottom" secondItem="pYW-ac-OA9" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="i25-pe-6xd"/>
                             <constraint firstItem="pYW-ac-OA9" firstAttribute="leading" secondItem="DMD-jp-D6D" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="jSz-w4-pDW"/>
                             <constraint firstItem="Jk8-Wo-Upy" firstAttribute="leading" secondItem="pYW-ac-OA9" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="lU5-RJ-oLf"/>
-                            <constraint firstItem="Jk8-Wo-Upy" firstAttribute="baseline" secondItem="DMD-jp-D6D" secondAttribute="baseline" type="default" id="opk-7I-hJf"/>
+                            <constraint firstItem="Zug-bZ-89Q" firstAttribute="centerY" secondItem="Ccx-QP-uAt" secondAttribute="centerY" type="default" id="pym-9O-LlL"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -118,41 +126,16 @@
                         <outlet property="_activityIndicator" destination="Ccx-QP-uAt" id="tJW-Yl-A1o"/>
                         <outlet property="_collectionView" destination="u4R-ME-yvN" id="aJn-4f-OWw"/>
                         <outlet property="_goToCurrentButton" destination="pYW-ac-OA9" id="Vbd-vq-Efu"/>
+                        <outlet property="doneImage" destination="Zug-bZ-89Q" id="DIl-ci-26I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
-    <classes>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToCurrentClicked:"/>
-                <relationship kind="outlet" name="_activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="_collectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="_goToCurrentButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SlideCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SlideCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="slideCellImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
+    <resources>
+        <image name="Done.png" width="800" height="800"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
