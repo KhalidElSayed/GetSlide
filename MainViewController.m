@@ -20,6 +20,7 @@
     NSMutableArray* _slidesArray;
     NSString* _lastImageUrlString;
     NSInteger _firstSlideId;
+    NSInteger _currentSlide;
 }
 
 @end
@@ -46,6 +47,10 @@
     });
 }
 
+- (IBAction)goToCurrentClicked:(id)sender {
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentSlide inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
+
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
     
@@ -64,10 +69,16 @@
         }
         
         slideId = slideId - _firstSlideId;
+        if (slideId < 0) {
+            slideId = 0;
+        }
         
-        if (slideId < [_slidesArray count]) {
+        NSLog(@"id: %d", slideId);
+        
+        if (slideId+1 < [_slidesArray count]) {
             //got back to existing slide
             [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:slideId inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            _currentSlide = slideId;
         }else{
             //got a new slide
            
@@ -76,9 +87,13 @@
                 
             }else{
                 _lastImageUrlString = imageUrlString;
+                [_activityIndicator startAnimating];
                 UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlString]]];
+                [_activityIndicator stopAnimating];
                 
                 Boolean sameImage = YES;
+                
+                //compare the images binary to make sure i didnt get the same photo
                 //if ([_slidesArray count] > 0) {
                 //    sameImage = [self Compare:img secondImage:_slidesArray[0]];
                 //}
@@ -86,7 +101,12 @@
                 if (sameImage) {
                     [_slidesArray addObject:img];
                     [_collectionView reloadData];
-                    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_slidesArray.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                    
+                    if (_currentSlide == _slidesArray.count-2) {
+                        [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_slidesArray.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                        _currentSlide = _slidesArray.count-1;
+                    }
+                    
                     NSLog(@"image changed");
                 }
             }
@@ -100,6 +120,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [_collectionView performBatchUpdates:nil completion:nil];
 }
 
 #pragma mark - data source
@@ -118,13 +143,35 @@
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < _currentSlide) {
+        [_goToCurrentButton setTitle:@"<" forState:UIControlStateNormal];
+    }
+    if (indexPath.row > _currentSlide) {
+        [_goToCurrentButton setTitle:@">" forState:UIControlStateNormal];
+    }
+    
+    [_goToCurrentButton setHidden:NO];
+    if (indexPath.row == _currentSlide) {
+        [_goToCurrentButton setHidden:YES];
+    }
+}
+
+
 #pragma mark – UICollectionViewDelegateFlowLayout
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(    NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [_collectionView reloadData];
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     CGSize cellSize;
-    cellSize.height = self.view.frame.size.height - 2 * kCellInset;
-    cellSize.width = self.view.frame.size.width - 2 * kCellInset;
+    cellSize.height = collectionView.bounds.size.height - 2 * kCellInset;
+    cellSize.width = collectionView.bounds.size.width - 2 * kCellInset;
     
     return cellSize;
 }

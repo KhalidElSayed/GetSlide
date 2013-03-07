@@ -12,9 +12,13 @@
 {
     __weak IBOutlet UICollectionView *_collectionView;
     
+    IBOutlet UIActivityIndicatorView *_activityIndicator;
+    IBOutlet UIButton *_goToCurrentButton;
 }
 
 - (void)fetchedData:(NSData *)responseData;
 - (void)fetchData;
+
+- (IBAction)goToCurrentClicked:(id)sender;
 
 @end
