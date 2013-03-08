@@ -11,7 +11,7 @@
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kServiceUrl [NSURL URLWithString:@"http://ec2-23-20-10-231.compute-1.amazonaws.com:8080/getslide/presentation/1/latest.htm"]
-#define kUpdateTimeIntervalInSeconds 0.2f 
+#define kUpdateTimeIntervalInSeconds 0.05f 
 
 #define kCellInset 20
 
@@ -61,6 +61,7 @@
     } completion:nil];
     
     UIImageWriteToSavedPhotosAlbum(_slidesArray[_currentSlide], self, nil, nil);
+    NSLog(@"saved");
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -104,7 +105,12 @@
             }else{
                 _lastImageUrlString = imageUrlString;
                 [_activityIndicator startAnimating];
-                UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlString]]];
+                NSData* imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlString]];
+                if (imgData == nil) {
+                    NSLog(@"error downloading image!");
+                    return;
+                }
+                UIImage* img = [UIImage imageWithData:imgData];
                 [_activityIndicator stopAnimating];
                 
                 Boolean sameImage = YES;
